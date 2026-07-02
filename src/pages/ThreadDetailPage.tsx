@@ -31,7 +31,7 @@ export default function ThreadDetailPage() {
   const queryClient = useQueryClient();
   
   const user = useAuthStore((s) => s.user);
-  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated());
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const isBookmarkPending = isAdding || isRemoving;
 

@@ -25,7 +25,7 @@ export function useUnreadNotificationCount() {
     queryFn: async () => {
       const res = await apiClient.get('/api/v1/notifications', { params: { page: 1, limit: 1 } });
       const { meta } = unwrapPaginated<Notification[]>(res);
-      return meta.total_rows;
+      return meta.total;
     },
     refetchInterval: 30_000, // Poll every 30 seconds
     enabled: isAuthenticated,
