@@ -25,7 +25,7 @@ interface CommentFormProps {
 }
 
 export default function CommentForm({ threadId, parentId, commentId, initialContent, onSuccess, onCancel }: CommentFormProps) {
-  const isAuthenticated = useAuthStore(s => s.isAuthenticated);
+  const isAuthenticated = useAuthStore(s => s.isAuthenticated());
   const { mutate: createMutate, isPending: isCreating, error: createError } = useCreateComment(threadId);
   const { mutate: updateMutate, isPending: isUpdating, error: updateError } = useUpdateComment(commentId || '', threadId);
   const isEditing = !!commentId;

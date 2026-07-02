@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import type { Comment } from '@/types/api';
 import { formatDate } from '@/lib/utils';
 import Avatar from '@/components/ui/Avatar';
@@ -27,10 +28,13 @@ export default function CommentItem({ comment, depth }: CommentItemProps) {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const user = useAuthStore(s => s.user);
+  const isAuthenticated = useAuthStore(s => s.isAuthenticated());
   const isOwner = user?.id === comment.user.id;
   const isModOrAdmin = user?.role === 'moderator' || user?.role === 'admin';
   const canEdit = isOwner || isModOrAdmin;
   const canDelete = isOwner || isModOrAdmin;
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const { mutate: deleteComment, isPending: deleting } = useDeleteComment(comment.id, comment.thread_id);
 
@@ -100,8 +104,14 @@ export default function CommentItem({ comment, depth }: CommentItemProps) {
           {/* Footer Actions */}
           {!comment.deleted_at && !isEditing && (
             <div className="flex items-center gap-4 mt-1">
-              <button 
-                onClick={() => setIsReplying(!isReplying)}
+              <button
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    navigate('/login', { state: { from: location } });
+                    return;
+                  }
+                  setIsReplying(!isReplying);
+                }}
                 className="flex items-center gap-1.5 text-xs font-medium text-ink-600 hover:text-ink-950 transition-colors"
               >
                 <MessageSquareReply className="w-4 h-4" />
