@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import 'tailwindcss';
+@import './tokens.css';
+
+/*
+ * Tailwind v4 theme configuration via CSS.
+ * Reference: AGENT.md §3 Design Token System
+ */
+
+@theme {
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Colors — surface */
+  --color-paper-0: var(--paper-0);
+  --color-paper-50: var(--paper-50);
+  --color-paper-100: var(--paper-100);
+
+  /* Colors — text */
+  --color-ink-950: var(--ink-950);
+  --color-ink-600: var(--ink-600);
+  --color-ink-400: var(--ink-400);
+
+  /* Colors — border */
+  --color-line-200: var(--line-200);
+
+  /* Colors — accent */
+  --color-accent-600: var(--accent-600);
+  --color-accent-50: var(--accent-50);
+
+  /* Colors — status */
+  --color-signal-red-600: var(--signal-red-600);
+  --color-signal-red-50: var(--signal-red-50);
+  --color-signal-green-600: var(--signal-green-600);
+  --color-signal-green-50: var(--signal-green-50);
+
+  /* Breakpoints (mobile-first) */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1280px;
+
+  /* Font sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-full: 999px;
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink-950);
+  background-color: var(--color-paper-50);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tabular nums for all mono/metric text */
+.font-mono {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Focus visible ring — uses accent color per AGENT.md §8 */
+*:focus-visible {
+  outline: 2px solid var(--color-accent-600);
+  outline-offset: 2px;
+}
+
+/* Skeleton shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-paper-100) 25%,
+    var(--color-paper-50) 50%,
+    var(--color-paper-100) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}

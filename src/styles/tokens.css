@@ -1,0 +1,79 @@
+
+:root {
+  /* Surface */
+  --paper-0: #FFFFFF;
+  --paper-50: #FAFAF9;
+  --paper-100: #F2F1EE;
+
+  /* Text */
+  --ink-950: #18181B;
+  --ink-600: #6B6A66;
+  --ink-400: #A6A49D;
+
+  /* Border */
+  --line-200: #E4E4E1;
+
+  /* Accent */
+  --accent-600: #3454D1;
+  --accent-50: #EEF1FC;
+
+  /* Status */
+  --signal-red-600: #B3261E;
+  --signal-red-50: #FBEEED;
+  --signal-green-600: #2E7D5B;
+  --signal-green-50: #ECF6F1;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+
+  --leading-tight: 1.3;
+  --leading-normal: 1.6;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-8: 48px;
+  --space-10: 64px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-full: 999px;
+}
+
+.dark {
+  /* Surface (Pitch Black theme) */
+  --paper-0: #000000;
+  --paper-50: #09090b;
+  --paper-100: #18181b;
+
+  /* Text */
+  --ink-950: #ffffff;
+  --ink-600: #a1a1aa;
+  --ink-400: #71717a;
+
+  /* Border */
+  --line-200: #27272a;
+
+  /* Accent (Adjusted for dark mode visibility) */
+  --accent-600: #4f74f7;
+  --accent-50: #1e293b;
+
+  /* Status */
+  --signal-red-600: #ef4444;
+  --signal-red-50: #450a0a;
+  --signal-green-600: #22c55e;
+  --signal-green-50: #052e16;
+}
