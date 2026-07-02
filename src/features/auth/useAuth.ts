@@ -76,8 +76,8 @@ export function useLogout() {
 
   return useMutation({
     mutationFn: async () => {
-      // Best-effort server logout (invalidates refresh token cookie)
-      await apiClient.post('/api/v1/auth/logout').catch(() => {});
+      const refreshToken = useAuthStore.getState().refreshToken;
+      await apiClient.post('/api/v1/auth/logout', refreshToken ? { refresh_token: refreshToken } : {}).catch(() => {});
     },
     onSettled: () => {
       logout();

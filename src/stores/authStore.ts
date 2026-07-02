@@ -37,16 +37,7 @@ export const useAuthStore = create<AuthState>()(
         set({ user, accessToken, refreshToken }),
 
       logout: () => {
-        const { refreshToken } = get();
         set({ user: null, accessToken: null, refreshToken: null });
-        
-        if (refreshToken) {
-          fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/logout`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ refresh_token: refreshToken }),
-          }).catch(() => {});
-        }
       },
 
       isAuthenticated: () => get().accessToken !== null && get().user !== null,
