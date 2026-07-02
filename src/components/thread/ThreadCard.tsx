@@ -14,6 +14,42 @@ interface ThreadCardProps {
   thread: Thread;
 }
 
+export function ThreadCardSkeleton() {
+  return (
+    <div className="flex gap-3 px-4 py-3 border-b border-line-200 bg-paper-0 animate-pulse">
+      {/* Avatar skeleton */}
+      <div className="flex-shrink-0 pt-1">
+        <div className="w-10 h-10 rounded-full bg-paper-200" />
+      </div>
+
+      {/* Content skeleton */}
+      <div className="flex-1 min-w-0 flex flex-col">
+        {/* Meta */}
+        <div className="flex items-center gap-2 mb-2">
+          <div className="h-4 w-24 rounded bg-paper-200" />
+          <div className="h-4 w-3 rounded bg-paper-200" />
+          <div className="h-4 w-16 rounded bg-paper-200" />
+          <div className="h-4 w-20 rounded bg-paper-200" />
+        </div>
+
+        {/* Title */}
+        <div className="h-5 w-3/4 rounded bg-paper-200 mb-2" />
+
+        {/* Snippet */}
+        <div className="h-4 w-full rounded bg-paper-200 mb-1" />
+        <div className="h-4 w-2/3 rounded bg-paper-200 mb-3" />
+
+        {/* Action bar */}
+        <div className="flex items-center gap-4">
+          <div className="h-4 w-8 rounded bg-paper-200" />
+          <div className="h-4 w-8 rounded bg-paper-200" />
+          <div className="h-4 w-12 rounded bg-paper-200" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ThreadCard({ thread }: ThreadCardProps) {
   const { mutate: addBookmark, isPending: isAdding } = useAddBookmark();
   const { mutate: removeBookmark, isPending: isRemoving } = useRemoveBookmark();
