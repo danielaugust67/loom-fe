@@ -13,7 +13,6 @@ import remarkGfm from 'remark-gfm';
 import rehypeSanitize from 'rehype-sanitize';
 import { cn } from '@/lib/utils';
 
-// Agent instruction: limit visual indent
 const MAX_VISUAL_DEPTH = 4;
 
 interface CommentItemProps {

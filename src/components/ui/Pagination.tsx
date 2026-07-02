@@ -19,7 +19,6 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
       return pages;
     }
 
-    // Always show first, last, current, current ± 1
     pages.push(1);
 
     const rangeStart = Math.max(2, currentPage - 1);

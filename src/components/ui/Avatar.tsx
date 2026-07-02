@@ -36,7 +36,6 @@ export default function Avatar({ src, alt, size = 'md', className }: AvatarProps
           loading="lazy"
           className="h-full w-full object-cover"
           onError={(e) => {
-            // Fallback to initial on load error
             const target = e.currentTarget;
             target.style.display = 'none';
             const parent = target.parentElement;

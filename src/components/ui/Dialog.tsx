@@ -25,8 +25,6 @@ export default function Dialog({ open, onClose, title, children, className }: Di
     }
   }, [open]);
 
-  // Close on ESC is handled natively by <dialog>
-  // Close on backdrop click
   const handleBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
     if (e.target === dialogRef.current) {
       onClose();

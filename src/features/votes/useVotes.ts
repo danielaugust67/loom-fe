@@ -11,8 +11,6 @@ export function useVote(votableType: 'thread' | 'comment') {
       const res = await apiClient.post('/api/v1/votes', data);
       return res.data;
     },
-    // Optimistic update is handled at the component level
-    // because it depends on the context (thread card vs comment)
     onSettled: () => {
       if (votableType === 'thread') {
         queryClient.invalidateQueries({ queryKey: ['threads'] });

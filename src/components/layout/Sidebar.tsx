@@ -36,11 +36,8 @@ export default function Sidebar() {
       {/* Sidebar panel */}
       <aside
         className={cn(
-          // Base styles
           'fixed inset-y-0 left-0 z-50 w-64 bg-paper-0 border-r border-line-200 overflow-y-auto transition-transform duration-200',
-          // Desktop: sticky layout
           'md:relative md:translate-x-0 md:top-14 md:h-[calc(100vh-3.5rem)] md:sticky md:block md:w-64 md:border-r-0 md:pr-4',
-          // Mobile: slide in/out
           sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
         )}
         aria-label="Sidebar navigasi"

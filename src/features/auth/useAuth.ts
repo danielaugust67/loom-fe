@@ -22,12 +22,10 @@ export function useCurrentUser() {
     },
     retry: 1,
     select: (data) => {
-      // Sync store with fetched user data
       setAuth(data, useAuthStore.getState().accessToken!, useAuthStore.getState().refreshToken!);
       return data;
     },
     meta: {
-      // Don't show error toast for initial auth check failure
       silent: true,
     },
     enabled: !!useAuthStore.getState().accessToken,

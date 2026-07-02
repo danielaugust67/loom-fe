@@ -29,8 +29,6 @@ apiClient.interceptors.response.use(
       _retry?: boolean;
     };
 
-    // If 401 and not already retried, attempt token refresh
-    // Skip intercept for login/register endpoints — they handle 401 themselves
     const isAuthEndpoint = originalRequest.url?.includes('/auth/login') || originalRequest.url?.includes('/auth/register');
     if (error.response?.status === 401 && !originalRequest._retry && !isAuthEndpoint) {
       originalRequest._retry = true;
@@ -49,13 +47,11 @@ apiClient.interceptors.response.use(
         const newRefreshToken = data.data.refresh_token;
         useAuthStore.getState().setAccessToken(newAccessToken, newRefreshToken);
 
-        // Retry original request with new token
         if (originalRequest.headers) {
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
         }
         return apiClient(originalRequest);
       } catch {
-        // Refresh failed — clear auth state, redirect to login
         useAuthStore.getState().logout();
         window.location.href = '/login';
         return Promise.reject(error);
@@ -90,7 +86,6 @@ export function mapErrorMessage(error: unknown): string {
     }
 
     if (response?.message) {
-      // Only show if it's a safe validation-style message (not internal detail)
       return response.message;
     }
 

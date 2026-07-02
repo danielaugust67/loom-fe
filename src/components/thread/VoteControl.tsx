@@ -33,13 +33,10 @@ export default function VoteControl({
 
     if (isPending) return;
 
-    // Calculate new vote state (toggle if same)
     const newVote = userVote === type ? 0 : type;
     
-    // Calculate score difference
     const diff = newVote - userVote;
 
-    // Optimistic UI update
     setScore((prev) => prev + diff);
     setUserVote(newVote);
 
@@ -51,7 +48,6 @@ export default function VoteControl({
       },
       {
         onError: () => {
-          // Revert optimistic update
           setScore((prev) => prev - diff);
           setUserVote(userVote);
         },

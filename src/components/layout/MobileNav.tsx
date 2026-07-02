@@ -21,7 +21,6 @@ export default function MobileNav() {
     <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-line-200 bg-paper-0 md:hidden">
       <div className="flex items-center justify-around h-14 px-2">
         {navItems.map(({ to, icon: Icon, label, auth }) => {
-          // Hide auth-required items if guest, show login redirect instead
           if (auth && !isAuthenticated) {
             return (
               <Link

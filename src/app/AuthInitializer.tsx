@@ -32,7 +32,6 @@ export default function AuthInitializer({ children }: { children: React.ReactNod
           login(data.data.user, data.data.access_token, data.data.refresh_token);
         }
       } catch (err) {
-        // Failed to restore (e.g. refresh token expired or doesn't exist)
       } finally {
         if (isMounted) {
           setIsInitializing(false);
@@ -47,7 +46,6 @@ export default function AuthInitializer({ children }: { children: React.ReactNod
     };
   }, [isAuthenticated, login]);
 
-  // Optionally return a full-page loading spinner here
   if (isInitializing) {
     return (
       <div className="flex h-screen w-full items-center justify-center bg-paper-0">

@@ -32,7 +32,6 @@ export const useUIStore = create<UIState>((set) => ({
     const id = `toast-${++toastCounter}`;
     set((s) => ({ toasts: [...s.toasts, { id, message, variant }] }));
 
-    // Auto-dismiss after 4 seconds
     setTimeout(() => {
       set((s) => ({ toasts: s.toasts.filter((t) => t.id !== id) }));
     }, 4000);

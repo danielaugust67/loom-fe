@@ -18,7 +18,6 @@ export default function SearchPage() {
   const [q, setQ] = useState(queryParam);
   const [page, setPage] = useState(pageParam);
 
-  // Sync state with URL params
   useEffect(() => {
     setInputValue(queryParam);
     setQ(queryParam);

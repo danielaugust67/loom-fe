@@ -11,7 +11,6 @@ export function useBookmarks(page = 1) {
       const res = await apiClient.get('/api/v1/bookmarks', { params: { page, limit: 10 } });
       const unwrapped = unwrapPaginated<Bookmark[]>(res);
       
-      // Inject is_bookmarked = true so the UI knows these are bookmarked
       unwrapped.data = unwrapped.data.map(b => {
         if (b.thread) {
           b.thread.is_bookmarked = true;

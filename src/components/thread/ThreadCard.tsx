@@ -62,7 +62,6 @@ export default function ThreadCard({ thread }: ThreadCardProps) {
     e.preventDefault();
     if (!isAuthenticated) return;
     
-    // Optimistic cache update if possible or at least trigger mutation
     if (thread.is_bookmarked) {
       removeBookmark(thread.id, {
         onSuccess: () => {
