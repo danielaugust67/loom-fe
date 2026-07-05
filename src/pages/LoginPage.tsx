@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import PageShell from '@/components/layout/PageShell';
 import Card, { CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/Card';
 import Input from '@/components/ui/Input';
@@ -19,9 +19,12 @@ type LoginForm = z.infer<typeof loginSchema>;
 export default function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
   const { mutate: login, isPending, error } = useLogin();
 
   const from = location.state?.from?.pathname || '/';
+  const isVerified = searchParams.get('verified') === 'true';
+  const verificationError = searchParams.get('error');
 
   const {
     register,
@@ -48,6 +51,16 @@ export default function LoginPage() {
           </CardHeader>
           <CardContent>
             <form id="login-form" onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              {isVerified && (
+                <div className="p-3 text-sm text-signal-green-600 bg-signal-green-50 rounded-sm">
+                  Email Anda berhasil diverifikasi! Silakan login di bawah ini.
+                </div>
+              )}
+              {verificationError && (
+                <div className="p-3 text-sm text-signal-red-600 bg-signal-red-50 rounded-sm">
+                  Gagal memverifikasi email: {verificationError}
+                </div>
+              )}
               {error && (
                 <div className="p-3 text-sm text-signal-red-600 bg-signal-red-50 rounded-sm">
                   {mapErrorMessage(error)}
